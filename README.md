@@ -49,12 +49,12 @@ The plugin can get the public url/media prefix from the `.env` file or from the 
 The plugin uses two environment variables:
 
 - `MEDIA_PREFIX`: The base URL to add in front of your media URLs
-- `MEDIA_PATH_PATTERN`: The pattern to identify media URLs (defaults to "/uploads/")
+- `MEDIA_URL_PATTERN`: The pattern to identify media URLs (defaults to "/uploads/")
 
 ```bash
 #.env
 MEDIA_PREFIX=https://kirwako.com/media
-MEDIA_PATH_PATTERN=/uploads/  # Optional, defaults to /uploads/
+MEDIA_URL_PATTERN=/uploads/  # Optional, defaults to /uploads/
 ```
 
 Example:
