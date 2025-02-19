@@ -1,4 +1,4 @@
-import { Strapi } from "@strapi/strapi";
+import type { Strapi } from "@strapi/types/dist/core/index";
 import { replaceUploadsWithMediaPrefix, initialize } from "../utils/replacer";
 
 export default ({ strapi }: { strapi: Strapi }) => {

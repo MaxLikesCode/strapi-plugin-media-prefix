@@ -1,4 +1,4 @@
-import { Strapi } from "@strapi/strapi";
+import type { Strapi } from "@strapi/types/dist/core/index";
 
 export default ({ strapi }: { strapi: Strapi }) => {
 	const plugin = strapi.plugin("media-prefix").service("mediaService");
