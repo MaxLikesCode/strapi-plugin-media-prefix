@@ -5,7 +5,7 @@ type ReplaceAction = "replace" | "prepend";
 
 let MEDIA_PREFIX = "http://localhost:1337";
 let MEDIA_URL_PATTERN = "/uploads/";
-let MEDIA_PREFIX_REPLACE_ACTION: ReplaceAction = "replace";
+let MEDIA_URL_REPLACE_ACTION: ReplaceAction = "replace";
 let strapiInstance: Strapi;
 
 export const initialize = (strapi: Strapi) => {
@@ -21,11 +21,11 @@ export const initialize = (strapi: Strapi) => {
 			"http://localhost:1337"
 		);
 	}
-	if (process.env.MEDIA_PREFIX_REPLACE_ACTION) {
-		MEDIA_PREFIX_REPLACE_ACTION = process.env
-			.MEDIA_PREFIX_REPLACE_ACTION as ReplaceAction;
+	if (process.env.MEDIA_URL_REPLACE_ACTION) {
+		MEDIA_URL_REPLACE_ACTION = process.env
+			.MEDIA_URL_REPLACE_ACTION as ReplaceAction;
 	}
-	if (MEDIA_PREFIX_REPLACE_ACTION === "prepend") {
+	if (MEDIA_URL_REPLACE_ACTION === "prepend") {
 		MEDIA_PREFIX += MEDIA_URL_PATTERN;
 	}
 };
