@@ -46,19 +46,26 @@ The plugin can get the public url/media prefix from the `.env` file or from the 
 
 # 🔧 Using .env file for environment configuration
 
-The plugin uses two environment variables:
+The plugin uses these environment variables:
 
 - `MEDIA_PREFIX`: The base URL to add in front of your media URLs
 - `MEDIA_URL_PATTERN`: The pattern to identify media URLs (defaults to "/uploads/")
+- `MEDIA_URL_REPLACE_ACTION`: How to handle the pattern match (defaults to "replace")
+  - "replace": Replaces the pattern with the prefix
+  - "prepend": Adds the prefix before the full URL
 
 ```bash
 #.env
 MEDIA_PREFIX=https://kirwako.com/media
 MEDIA_URL_PATTERN=/uploads/  # Optional, defaults to /uploads/
+MEDIA_URL_REPLACE_ACTION=prepend  # Optional, defaults to replace
 ```
 
-Example:
-If a URL is "/uploads/image.jpg", it becomes "https://kirwako.com/media/uploads/image.jpg"
+Examples:
+With URL "/uploads/image.jpg":
+
+- Using replace: "https://kirwako.com/media/image.jpg"
+- Using prepend: "https://kirwako.com/media/uploads/image.jpg"
 
 # 🚀 Using ./config/server.ts file for environment configuration
 
