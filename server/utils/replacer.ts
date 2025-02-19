@@ -1,11 +1,15 @@
-import { Strapi } from "@strapi/strapi";
-import { Event } from "@strapi/database/dist/lifecycles";
+import type { Strapi } from "@strapi/types/dist/core/index";
+import type { Event } from "@strapi/database/dist/lifecycles";
 
 let MEDIA_PREFIX = "http://localhost:1337";
+let MEDIA_PREFIX_PATH = "/uploads/";
 let strapiInstance: Strapi;
 
 export const initialize = (strapi: Strapi) => {
 	strapiInstance = strapi;
+	if (process.env.MEDIA_PREFIX_PATH) {
+		MEDIA_PREFIX_PATH = process.env.MEDIA_PREFIX_PATH;
+	}
 	if (process.env.MEDIA_PREFIX) {
 		MEDIA_PREFIX = process.env.MEDIA_PREFIX;
 	} else {
@@ -14,7 +18,7 @@ export const initialize = (strapi: Strapi) => {
 			"http://localhost:1337"
 		);
 	}
-	MEDIA_PREFIX += "/uploads/";
+	MEDIA_PREFIX += MEDIA_PREFIX_PATH;
 };
 
 export const replaceUploadsWithMediaPrefix = (obj: Event) => {
@@ -26,10 +30,10 @@ export const replaceUploadsWithMediaPrefix = (obj: Event) => {
 		for (let key in obj) {
 			if (
 				typeof obj[key] === "string" &&
-				obj[key].startsWith("/uploads") &&
+				obj[key].startsWith(MEDIA_PREFIX_PATH) &&
 				key === "url"
 			) {
-				obj[key] = obj[key].replace(/\/uploads\//g, MEDIA_PREFIX);
+				obj[key] = obj[key].replace(MEDIA_PREFIX_PATH, MEDIA_PREFIX);
 			} else {
 				obj[key] = replaceUploadsWithMediaPrefix(obj[key]);
 			}
