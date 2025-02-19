@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.replaceUploadsWithMediaPrefix = exports.initialize = void 0;
 let MEDIA_PREFIX = "http://localhost:1337";
 let MEDIA_URL_PATTERN = "/uploads/";
-let MEDIA_PREFIX_REPLACE_ACTION = "replace";
+let MEDIA_URL_REPLACE_ACTION = "replace";
 let strapiInstance;
 const initialize = (strapi) => {
     strapiInstance = strapi;
@@ -16,11 +16,11 @@ const initialize = (strapi) => {
     else {
         MEDIA_PREFIX = strapiInstance.config.get("server.url", "http://localhost:1337");
     }
-    if (process.env.MEDIA_PREFIX_REPLACE_ACTION) {
-        MEDIA_PREFIX_REPLACE_ACTION = process.env
-            .MEDIA_PREFIX_REPLACE_ACTION;
+    if (process.env.MEDIA_URL_REPLACE_ACTION) {
+        MEDIA_URL_REPLACE_ACTION = process.env
+            .MEDIA_URL_REPLACE_ACTION;
     }
-    if (MEDIA_PREFIX_REPLACE_ACTION === "prepend") {
+    if (MEDIA_URL_REPLACE_ACTION === "prepend") {
         MEDIA_PREFIX += MEDIA_URL_PATTERN;
     }
 };
